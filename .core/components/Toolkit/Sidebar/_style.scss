@@ -1,0 +1,25 @@
+.re-toolkit-sidebar {
+    display: flex;
+    position: relative;
+    min-width: $sidebar-width;
+    width: $sidebar-width;
+    height: calc(100vh - #{$header-height});
+    overflow: hidden;
+    background-color: $white;
+    box-shadow: $drop-shadow;
+
+    &.right {
+        order: 10;
+        flex-direction: row-reverse;
+    }
+
+    @include breakpoint(xs) {
+        background-color: black;
+
+        &-closed {
+            box-shadow: none;
+            width: 0px;
+            min-width: 0px;
+        }
+    }
+}
