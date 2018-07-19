@@ -1,0 +1,82 @@
+$hndl-size: 16px;
+$bar-size: 1px;
+
+.slider {
+    min-width: 250px;
+    height: $hndl-size + $bar-size;
+    position: relative;
+    user-select: none;
+
+    &:before {
+        height: $bar-size;
+        background-color: $color-grey-light;
+        content: "";
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+    }
+
+    &-label {
+        position         : absolute;
+        left             : 0;
+        top              : 0;
+        width            : 55px;
+        display          : none;
+        transform        : translateY(-100%);
+        white-space      : nowrap;
+        margin-top       : -10px;
+        padding          : 5px;
+        line-height      : 1;
+        font-family      : monospace;
+        font-size        : 10px;
+        user-select      : none;
+        background-color : white;
+        text-align       : center;
+        border           : 1px solid $color-grey-light;
+
+        color: $color-gray;
+        &:after {
+            content: "";
+            background-color: $color-grey-light;
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 1px;
+            height: 10px;
+            transform: translateX(-50%) translateY(100%);
+        }
+    }
+
+    &-handle {
+        width: $hndl-size;
+        height: $hndl-size;
+        border-radius: 100%;
+        background-color: $color-blue;
+        position: absolute;
+        cursor: grab;
+        user-select: none;
+        z-index: 200;
+
+        &:after {
+            content: "";
+            width: $hndl-size/2;
+            height: $hndl-size/2;
+            border-radius: 100%;
+            background-color: $color-white;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        &:first-child {
+            left: 0;
+        }
+
+        &:last-child {
+            left: calc(100% - #{$hndl-size});
+        }
+    }
+}

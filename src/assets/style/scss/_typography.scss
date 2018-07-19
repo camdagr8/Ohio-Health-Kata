@@ -1,6 +1,28 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:100,400');
+
+
 html, body {
     font-family: Helvetica, Arial, sans-serif;
     font-size: 16px;
+    line-height: 1;
+}
+
+$headings: (
+    "h1": 56px,
+    "h2": 48px,
+    "h3": 40px,
+    "h4": 32px,
+    "h5": 24px,
+    "h6": 16px
+);
+
+@each $h, $size in $headings {
+    #{$h}, .#{$h} { font-size: $size; }
+}
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 100;
     line-height: 1;
 }
 

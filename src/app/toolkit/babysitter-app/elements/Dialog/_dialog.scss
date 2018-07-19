@@ -1,0 +1,106 @@
+
+.dialog {
+    @include dialogSize();
+
+    border-radius: 12px;
+    box-shadow: 0 0 5px 1px rgba(0,0,0,0.125);
+    font-size: 14px;
+    position: relative;
+    background-color: $color-white;
+
+    .h6 {
+        font-weight: 400;
+    }
+
+    &-header {
+        padding: 10px 20px;
+        border-bottom: 1px solid $color-grey-light;
+        z-index: 20;
+    }
+
+    &-body {
+        padding: 20px;
+        z-index: 20;
+    }
+
+    &-slider {
+        padding: 30px 40px;
+    }
+
+    &-footer {
+        @include dialogSize();
+        padding: 40px 10px;
+        border-radius: 0 0 12px 12px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: $color-white;
+        background: $color-blue;
+        background: -moz-linear-gradient(left, lighten($color-blue, 5%) 0%, $color-blue 100%);
+        background: -webkit-linear-gradient(left, lighten($color-blue, 5%) 0%,$color-blue 100%);
+        background: linear-gradient(to right, lighten($color-blue, 5%) 0%,$color-blue 100%);
+        z-index: 20;
+
+        .h6 {
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+    }
+
+    &-aside {
+        position        : absolute;
+        right           : 0;
+        top             : 50%;
+        min-width       : 170px;
+        display         : flex;
+        align-items     : flex-end;
+        justify-content : center;
+        flex-direction  : column;
+        padding: 30px 15px 30px 20px;
+        border-top: 1px solid $color-grey-light;
+        border-right: 1px solid $color-grey-light;
+        border-bottom: 1px solid $color-grey-light;
+        z-index: 1;
+
+        transform: translateY(-50%) translateX(100%);
+        * { font-size: 10px; font-family: monospace; }
+
+        ul {
+            &, li {
+                width: 100%;
+                list-style: none;
+                padding: 0;
+                margin: 0;
+            }
+
+            li {
+                width: 100%;
+                display: flex;
+                line-height: 2;
+                align-items: flex-end;
+                justify-content: flex-end;
+
+                .heading {
+                    font-weight: bold;
+                    font-family: 'Lato', sans-serif;
+                    font-size: 11px;
+                    padding-bottom: 5px;
+                    margin-bottom: 5px;
+                    border-bottom: 1px solid $color-grey-light;
+                }
+            }
+        }
+
+        &-label {
+            flex-grow: 1;
+            padding-right: 10px;
+        }
+
+        &-hours,
+        &-total {
+            width: 50px;
+            text-align: right;
+        }
+    }
+}

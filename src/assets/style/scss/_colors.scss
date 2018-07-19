@@ -1,0 +1,37 @@
+$color-black       : #000000;
+$color-white       : #FFFFFF;
+$color-grey        : #CCCCCC;
+$color-grey-light  : #f7f7f7;
+$color-gray        : #999999;
+$color-gray-dark   : #333333;
+$color-red         : #A82C40;
+$color-orange      : #E69840;
+$color-pink        : #D877a0;
+$color-green       : #659A3F;
+$color-green-light : #B2BB50;
+$color-purple      : #7a7cef;
+$color-blue        : #4F82BA;
+
+$color: (
+    "black"       : $color-black,
+    "white"       : $color-white,
+    "grey"        : $color-grey,
+    "grey-light"  : $color-grey-light,
+    "gray"        : $color-gray,
+    "gray-dark"   : $color-gray-dark,
+    "red"         : $color-red,
+    "orange"      : $color-orange,
+    "pink"        : $color-pink,
+    "green"       : $color-green,
+    "green-light" : $color-green-light,
+    "purple"      : $color-purple,
+    "blue"        : $color-blue,
+    "primary"     : $color-blue,
+    "secondary"   : $color-gray,
+);
+
+
+@each $clr-name, $clr-code in $color {
+    .#{$clr-name} { color: $clr-code; }
+    .bg-#{$clr-name} { background-color: $clr-code; }
+}
