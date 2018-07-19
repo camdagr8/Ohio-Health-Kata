@@ -31,3 +31,12 @@ In Terminal run the following command from the application root:
 ```
 $ npm test
 ```
+
+## About the Code
+
+This app is written using [Reactium](https://github.com/Atomic-Reactor/Reactium) a React rapid application framework I co-authored while at IBM. Reactium is focused on Domain Driven Design.
+
+-   The Calculator React component can be found at: `~/src/app/components/Calculator.js`.
+-   The Calculator processing class can be found at: `~/src/app/components/Calculator/calculate.js`.
+-   The styles use Sass and are compiled into the `style.css` file using Gulp
+-   The Style Guide markup can be viewed by launching the app and navigating to `http://localhost:3000/toolkit` in your browser.
