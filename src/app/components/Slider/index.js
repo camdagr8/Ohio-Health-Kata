@@ -21,6 +21,7 @@ export default class Slider extends Component {
         this.onMouseDown = this.onMouseDown.bind(this);
         this.onMouseMove = this.onMouseMove.bind(this);
         this.onMouseUp = this.onMouseUp.bind(this);
+        this.redraw = this.redraw.bind(this);
 
         this.getTime = this.getTime.bind(this);
         this.update = this.update.bind(this);
@@ -35,9 +36,7 @@ export default class Slider extends Component {
     }
 
     componentDidMount() {
-        if (this.state.hasOwnProperty('mount')) {
-            this.state.mount(this);
-        }
+        //window.addEventListener('resize', this.redraw);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -45,6 +44,10 @@ export default class Slider extends Component {
             ...prevState,
             ...nextProps
         }));
+    }
+
+    redraw() {
+        this.setState({ resize: Date.now() });
     }
 
     onMouseDown(e) {
@@ -113,15 +116,18 @@ export default class Slider extends Component {
             this.labelStart.style.zIndex = 1;
             this.labelEnd.style.zIndex = 1;
             let lx = x - (label.offsetWidth / 2 - this.elm.offsetWidth / 2);
-            label.style.left = `${lx}px`;
+            lx = (lx / this.cont.offsetWidth) * 100;
+            label.style.left = `${lx}%`;
             label.style.zIndex = 10;
+
             setTimeout(() => {
                 label.style.display = 'block';
             }, 100);
         }
 
+        let xp = (x / this.cont.offsetWidth) * 100;
         this.setState(st);
-        this.elm.style.left = `${x}px`;
+        this.elm.style.left = `${xp}%`;
         this.update();
     }
 
