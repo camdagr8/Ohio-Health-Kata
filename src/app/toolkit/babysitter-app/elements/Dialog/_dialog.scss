@@ -1,6 +1,21 @@
 
+@mixin dialogSize() {
+    max-width: px2rem(480);
+    min-width: px2rem(300);
+    width: 100%;
+}
+
+
 .dialog {
     @include dialogSize();
+
+    @include break(sm-down) {
+        max-width: px2rem(300);
+        position: absolute;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
 
     border-radius: 12px;
     box-shadow: 0 0 5px 1px rgba(0,0,0,0.125);
@@ -62,6 +77,9 @@
         border-right: 1px solid $color-grey-light;
         border-bottom: 1px solid $color-grey-light;
         z-index: 1;
+
+        @extend .hidden-xs;
+        @extend .hidden-sm;
 
         transform: translateY(-50%) translateX(100%);
         * { font-size: 10px; font-family: monospace; }

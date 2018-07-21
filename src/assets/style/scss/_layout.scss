@@ -13,10 +13,11 @@ main {
     justify-content: center;
     width: 100vw;
     height: 100vh;
-}
 
-@mixin dialogSize() {
-    max-width: px2rem(480);
-    min-width: px2rem(240);
-    width: 100%;
+    @include break(sm-down) {
+        overflow: hidden;
+        width: auto;
+        height: auto;
+        display: block;
+    }
 }

@@ -21,6 +21,7 @@ export default class Slider extends Component {
         this.onMouseDown = this.onMouseDown.bind(this);
         this.onMouseMove = this.onMouseMove.bind(this);
         this.onMouseUp = this.onMouseUp.bind(this);
+
         this.getTime = this.getTime.bind(this);
         this.update = this.update.bind(this);
         this.labelStart = null;
@@ -48,10 +49,16 @@ export default class Slider extends Component {
 
     onMouseDown(e) {
         this.elm = e.currentTarget;
+
+        let { pageX } = e.type === 'touchstart' ? e.touches[0] : e;
+
         window.onmouseup = this.onMouseUp;
         window.onmousemove = this.onMouseMove;
+        window.ontouchend = this.onMouseUp;
+        window.ontouchmove = this.onMouseMove;
+
         this.dragStart = this.elm.offsetLeft;
-        this.pos = e.pageX;
+        this.pos = pageX;
 
         let id = this.elm.id;
 
@@ -65,12 +72,15 @@ export default class Slider extends Component {
     }
 
     onMouseMove(e) {
-        e.preventDefault();
-        if (!this.elm) {
+        if (!this.elm || !this.timeStart || !this.timeEnd) {
             return;
         }
+
+        let { pageX } =
+            e.type === 'touchmove' ? window.event.touches[0] : window.event;
+
         let { offset = 0 } = this.state;
-        let delta = window.event.pageX - this.pos;
+        let delta = pageX - this.pos;
         let x = this.dragStart + delta;
 
         let id = this.elm.id;
@@ -88,7 +98,9 @@ export default class Slider extends Component {
         x = Math.min(x, max);
 
         let percent = x / (this.cont.offsetWidth - this.elm.offsetWidth);
-        let time = moment(this.getTime(percent));
+
+        let t = this.getTime(percent);
+        let time = moment(t);
 
         let label = id === 'timeStart' ? this.labelStart : this.labelEnd;
 
@@ -124,6 +136,9 @@ export default class Slider extends Component {
 
         this.elm.onmouseup = null;
         this.elm.onmousemove = null;
+        this.elm.ontouchend = null;
+        this.elm.ontouchmove = null;
+
         this.elm = null;
         this.dragStart = 0;
 
@@ -132,6 +147,7 @@ export default class Slider extends Component {
 
     getTime(percent) {
         let { min, max } = this.state;
+
         min = min.valueOf();
         max = max.valueOf();
 
@@ -185,6 +201,7 @@ export default class Slider extends Component {
                     id="timeStart"
                     className={`slider-handle`}
                     onMouseDown={this.onMouseDown}
+                    onTouchStart={this.onMouseDown}
                     draggable={false}
                     ref={elm => {
                         this.timeStart = elm;
@@ -194,6 +211,7 @@ export default class Slider extends Component {
                     id="timeStop"
                     className={`slider-handle`}
                     onMouseDown={this.onMouseDown}
+                    onTouchStart={this.onMouseDown}
                     draggable={false}
                     ref={elm => {
                         this.timeEnd = elm;
@@ -205,8 +223,13 @@ export default class Slider extends Component {
 }
 
 Slider.defaultProps = {
-    min: moment(new Date('2000-04-22 17:00:00.000')),
-    max: moment(new Date('2000-04-23 04:00:00.000')),
+    min: moment(`${moment().format('YYYY-MM-DD')} 5:00pm`, 'YYYY-MM-DD h:mma'),
+    max: moment(
+        `${moment()
+            .add(1, 'days')
+            .format('YYYY-MM-DD')} 4:00am`,
+        'YYYY-MM-DD h:mma'
+    ),
     start: null,
     end: null
 };

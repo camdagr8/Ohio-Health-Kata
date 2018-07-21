@@ -362,3 +362,60 @@
     @warn "last mixin arg must be one of the existing breakpoints (#{$breakpoint-up-prefixes})";
   }
 }
+
+
+@mixin break($point: null) {
+
+    @if ($point == null) {
+        @content;
+    }
+
+    @else if $point == lg-down {
+        @media #{$breakpoint-lg-down}  { @content; }
+    }
+
+    @else if $point == md-down {
+        @media #{$breakpoint-md-down}  { @content; }
+    }
+
+    @else if $point == sm-down {
+        @media #{$breakpoint-sm-down}  { @content; }
+    }
+
+    @else if $point = xl-up {
+        @media #{$breakpoint-xl-up} { @content; }
+    }
+
+    @else if $point = lg-up {
+        @media #{$breakpoint-lg-up} { @content; }
+    }
+
+    @else if $point = md-up {
+        @media #{$breakpoint-md-up} { @content; }
+    }
+
+    @else if $point = sm-up {
+        @media #{$breakpoint-sm-up} { @content; }
+    }
+
+
+    @else if $point == xs {
+        @media #{$breakpoint-xs-only} { @content; }
+    }
+
+    @else if $point == sm {
+        @media #{$breakpoint-sm-only} { @content; }
+    }
+
+    @else if $point == md {
+        @media #{$breakpoint-md-only} { @content; }
+    }
+
+    @else if $point == lg {
+        @media #{$breakpoint-lg-only}  { @content; }
+    }
+
+    @else if $point == xl {
+        @media #{$breakpoint-xl-only}  { @content; }
+    }
+}

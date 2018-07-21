@@ -60,6 +60,10 @@ export default class Calculator extends Component {
                         name="description"
                         content="Pay calculator code challenge"
                     />
+                    <meta
+                        name="viewport"
+                        content="width=device-width, initial-scale=1, maximum-scale=1"
+                    />
                     <html lang="en" />
                 </Helmet>
                 <main role="main">

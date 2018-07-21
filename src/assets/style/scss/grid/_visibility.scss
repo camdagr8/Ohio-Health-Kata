@@ -9,10 +9,12 @@
 
 // Mixin to run inside of for loop - creates visibility classes * Not for developer use *
 @mixin vis-factory($thisPrefix) {
-  .show-#{$thisPrefix} {
+  .show-#{$thisPrefix},
+  .visible-#{$thisPrefix} {
     display: block !important;
   }
-  .hide-#{$thisPrefix} {
+  .hide-#{$thisPrefix},
+  .hidden-#{$thisPrefix} {
     display: none !important;
   }
 } // Mixin to run inside of for loop - creates visibility classes * Not for developer use *

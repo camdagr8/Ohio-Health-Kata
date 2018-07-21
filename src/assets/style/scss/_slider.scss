@@ -2,7 +2,7 @@ $hndl-size: 16px;
 $bar-size: 1px;
 
 .slider {
-    min-width: 250px;
+    width: 100%;
     height: $hndl-size + $bar-size;
     position: relative;
     user-select: none;
